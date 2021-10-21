@@ -1,7 +1,7 @@
 {
-    "name": "happy-birthday",
+    "name": "neo-news",
     "version": "0.7.0",
-    "description": "happy birthday skill",
+    "description": "neo news skill",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
