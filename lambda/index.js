@@ -5,13 +5,28 @@
  * */
 const Alexa = require('ask-sdk-core');
 const Moment = require('moment-timezone')
+const i18n = require('i18next');
 
+const languageStrings = {
+    en: {
+        translation: {
+            WELCOME_MSG: `Welcome to the Neo Reminder app! What companies are you interested in?`,
+            SUCCESS_MSG: 'You have successfully set up a reminder for {{time}} {{amOrPm}} for company {{company}}.',
+            HELP_MSG: 'You can say hello to me! How can I help?',
+            GOODBYE_MSG: 'Goodbye!',
+            REFLECTOR_MSG: 'You just triggered {{intent}}',
+            FALLBACK_MSG: 'Sorry, I don\'t know about that. Please try again.',
+            ERROR_MSG: 'Sorry, there was an error. Please try again.'
+        }
+    }
+}
+    
 const LaunchRequestHandler = {
     canHandle(handlerInput) {
         return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
     },
     handle(handlerInput) {
-        const speakOutput = 'Welcome to the Neo Reminder app! What companies are you interested in?';
+        const speakOutput = handlerInput.t('WELCOME_MSG');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -19,70 +34,6 @@ const LaunchRequestHandler = {
             .getResponse();
     }
 };
-
-// If we make CreateReminderWithParametersIntentHandler work we can delete this one, if not this one will work if we hardcode the time
-/*
-const CreateReminderIntentHandler = {
-    canHandle(handlerInput) {
-        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
-            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.YesIntent';
-    },
-    async handle(handlerInput) {
-        const reminderApiClient = handlerInput.serviceClientFactory.getReminderManagementServiceClient(), 
-        { permissions } = handlerInput.requestEnvelope.context.System.user
-        
-        // This bit doesn't work on the computer
-        if(!permissions){
-            return handlerInput.respondBuilder.speak("Please go to the Alexa mobile app to grant reminders permissions")
-                .withAskForPermissionsConsentCard(['alexa::alerts:reminders:skill:readwrite'])
-                .getResponse()
-        }
-        
-        const currentDateTime = moment().tz('Europe/London'),
-            reminderRequest = {
-                   requestTime : currentDateTime.format('YYYY-MM-DDTHH:mm:ss'),
-                   trigger: {
-                        type : "SCHEDULED_ABSOLUTE",
-                        scheduledTime : currentDateTime.set({
-                            hour: '10',
-                            minute: '00',
-                            second: '00'
-                        }).format('YYYY-MM-DDTHH:mm:ss'),
-                        timeZoneId : "Europe/London"
-                   },
-                   alertInfo: {
-                        spokenInfo: {
-                            content: [{
-                                locale: "en-GB",
-                                text: "The titles of relevant articles about blah are blah",
-                                ssml: "<speak>The titles of relevant articles about blah are blah</speak>"  
-                            }]
-                        }
-                    },
-                    pushNotification : {                            
-                         status : "ENABLED"
-                    }
-                  }
-            
-            
-        try {
-            await reminderApiClient.createReminder(reminderRequest)
-        } catch (error){
-            console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
-            return handlerInput.responseBuilder
-                .speak("There was an error setting up your reminder, please try again later")
-                .getResponse();
-        }
-        
-        const speakOutput = 'You successfully set a daily reminder at 10am';
-
-        return handlerInput.responseBuilder
-            .speak(speakOutput)
-            //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
-            .getResponse();
-    }
-};
-*/
 
 // This should work with the parameters
 const CreateReminderWithParametersIntentHandler = {
@@ -94,6 +45,14 @@ const CreateReminderWithParametersIntentHandler = {
         
         const reminderApiClient = handlerInput.serviceClientFactory.getReminderManagementServiceClient();
         
+        const {requestEnvelope, responseBuilder} = handlerInput;
+        const {intent} = requestEnvelope.request;
+        
+        const time = Alexa.getSlotValue(requestEnvelope, 'time');
+        const amOrPm = Alexa.getSlotValue(requestEnvelope, 'amOrPm');
+        const company = Alexa.getSlotValue(requestEnvelope, 'company');
+
+            
         /* 
         Uncomment this bit and test on Alexa
         ,{ permissions } = handlerInput.requestEnvelope.context.System.user
@@ -141,10 +100,11 @@ const CreateReminderWithParametersIntentHandler = {
                 .getResponse();
         }*/
         
-        const speakOutput = 'You have successfully set up a reminder for {{time}} {{amOrPm}} for company {{company}}.';
+
+        const speechText = handlerInput.t('SUCCESS_MSG', {time: time, amOrPm: amOrPm, company: company});
 
         return handlerInput.responseBuilder
-            .speak(speakOutput)
+            .speak(speechText)
             //.reprompt('add a reprompt if you want to keep the session open for the user to respond')
             .getResponse();
     }
@@ -156,7 +116,7 @@ const HelpIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'You can say hello to me! How can I help?';
+        const speakOutput = handlerInput.t('HELP_MSG');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -172,7 +132,7 @@ const CancelAndStopIntentHandler = {
                 || Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.StopIntent');
     },
     handle(handlerInput) {
-        const speakOutput = 'Goodbye!';
+        const speakOutput = handlerInput.t('GOODBYE_MSG');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -190,7 +150,7 @@ const FallbackIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
     },
     handle(handlerInput) {
-        const speakOutput = 'Sorry, I don\'t know about that. Please try again.';
+        const speakOutput = handlerInput.t('FALLBACK_MSG');
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -224,7 +184,7 @@ const IntentReflectorHandler = {
     },
     handle(handlerInput) {
         const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-        const speakOutput = `You just triggered ${intentName}`;
+        const speakOutput = handlerInput.t('REFLECTOR_MSG', {intent: intentName});
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -242,13 +202,25 @@ const ErrorHandler = {
         return true;
     },
     handle(handlerInput, error) {
-        const speakOutput = 'Sorry, I had trouble doing what you asked. Please try again.';
+        const speakOutput = handlerInput.t('ERROR_MSG');
         console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
         return handlerInput.responseBuilder
             .speak(speakOutput)
-            .reprompt(speakOutput)
+            .reprompt(handlerInput.t('HELP_MSG'))
             .getResponse();
+    }
+};
+
+// This request interceptor will bind a translation function 't' to the handlerInput
+const LocalisationRequestInterceptor = {
+    process(handlerInput) {
+        i18n.init({
+            lng: Alexa.getLocale(handlerInput.requestEnvelope),
+            resources: languageStrings
+        }).then((t) => {
+            handlerInput.t = (...args) => t(...args);
+        });
     }
 };
 
@@ -268,6 +240,8 @@ exports.handler = Alexa.SkillBuilders.custom()
         IntentReflectorHandler)
     .addErrorHandlers(
         ErrorHandler)
+    .addRequestInterceptors(
+        LocalisationRequestInterceptor)        
     .withApiClient(new Alexa.DefaultApiClient())
     .withCustomUserAgent('sample/hello-world/v1.2')
     .lambda();
