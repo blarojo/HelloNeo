@@ -1,0 +1,197 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "neo reminders",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": [
+            "yes",
+            "sounds good"
+          ]
+        },
+        {
+          "name": "ReminderIntent",
+          "slots": [
+            {
+              "name": "amOrPm",
+              "type": "MorningAfternoon",
+              "samples": [
+                "That is {amOrPm}",
+                "{amOrPm}"
+              ],
+              "multipleValues": {
+                "enabled": true
+              }
+            },
+            {
+              "name": "company",
+              "type": "AMAZON.Corporation",
+              "samples": [
+                "{company}  {company} and {company}",
+                "{company} and {company}",
+                "{company}"
+              ],
+              "multipleValues": {
+                "enabled": true
+              }
+            },
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "{time} {amOrPm} please",
+                "{time} {amOrPm}",
+                "{time}"
+              ]
+            }
+          ],
+          "samples": [
+            "{company} {company} and {company}",
+            "{company} and {company}",
+            "{company}",
+            "Let\u0027s set a reminder",
+            "Please set a reminder about {company}",
+            "I would like a reminder about {company} at {time} {amOrPm}",
+            "I would like news about {company}",
+            "{time} {amOrPm}",
+            "I would like a reminder at {time}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "PM"
+              }
+            },
+            {
+              "name": {
+                "value": "AM"
+              }
+            }
+          ],
+          "name": "MorningAfternoon"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "ReminderIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "amOrPm",
+              "type": "MorningAfternoon",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.205209736807"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.159197729300.205209736807.1031771570687",
+                  "values": [
+                    "AM",
+                    "PM"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "company",
+              "type": "AMAZON.Corporation",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.491439887212"
+              }
+            },
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.1389772774154"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.159197729300.205209736807",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "When would you like the reminder for - AM or PM?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.159197729300.205209736807.1031771570687",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "That is not an acceptable value, please say either AM or PM"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.159197729300.491439887212",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I am sorry, but I need to know the name of the company you would like reminders about"
+          },
+          {
+            "type": "PlainText",
+            "value": "What company would you like reminders about?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.159197729300.1389772774154",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What time would you like the reminder for?"
+          },
+          {
+            "type": "PlainText",
+            "value": "At what time would you like the reminder?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "14"
+}
