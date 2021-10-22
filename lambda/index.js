@@ -16,7 +16,7 @@ const LaunchRequestHandler = {
         
         const audioUrl = util.getS3PreSignedUrl("Media/ubs-intro.mp3").replace(/&/g,'&amp;');
         return handlerInput.responseBuilder
-                .speak(` Hello ${name} <audio src="${audioUrl}"/>`)
+                .speak(` Hello ${name}`)
                 .reprompt('If you\'re not sure what to do next try asking for help. If you want to leave just say stop. What would you like to do next?')
                 .getResponse();
     }
@@ -80,7 +80,7 @@ const AddResearchIntentHandler = {
         const sessionAttributes = attributesManager.getSessionAttributes();
         const {intent} = requestEnvelope.request;
         
-        if (intent.confirmationStatus === 'CONFIRMED') {
+        
             const topicDetails = Alexa.getSlotValue(requestEnvelope, 'topicDetails');
             const topic = Alexa.getSlotValue(requestEnvelope, 'topic');
             
@@ -95,12 +95,6 @@ const AddResearchIntentHandler = {
                 .speak(speechText)
                 .reprompt('If you\'re not sure what to do next try asking for help. If you want to leave just say stop. What would you like to do next?')
                 .getResponse();
-        }
-        
-        return handlerInput.responseBuilder
-            .speak('Not able to add the topic')
-            .reprompt('If you\'re not sure what to do next try asking for help. If you want to leave just say stop. What would you like to do next?')
-            .getResponse();
     }
 };
 
