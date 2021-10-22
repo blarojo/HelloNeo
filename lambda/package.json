@@ -1,7 +1,7 @@
 {
-    "name": "neo-news",
-    "version": "0.7.0",
-    "description": "neo news skill",
+    "name": "happy-birthday",
+    "version": "0.6.0",
+    "description": "happy birthday skill",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,7 +13,6 @@
         "i18next": "^15.0.5",
         "ask-sdk-s3-persistence-adapter": "^2.7.0",
         "ask-sdk-dynamodb-persistence-adapter": "^2.7.0",
-        "moment-timezone": "^0.5.23",
-        "axios": "^0.18.0"
+        "moment-timezone": "^0.5.23"
     }
 }
