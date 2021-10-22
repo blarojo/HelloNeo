@@ -1,5 +1,5 @@
 const Alexa = require('ask-sdk-core');
-const util = require('./util'); // utility functions
+const Util = require('./util'); // utility functions
 const interceptors = require('./interceptors');
 const handlers = require('./handlers'); 
 
