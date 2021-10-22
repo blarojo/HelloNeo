@@ -1,499 +1,502 @@
 {
-    "interactionModel": {
-        "languageModel": {
-            "invocationName": "happy birthday",
-            "intents": [
-                {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
-                    "name": "RegisterBirthdayIntent",
-                    "slots": [
-                        {
-                            "name": "day",
-                            "type": "AMAZON.Ordinal",
-                            "samples": [
-                                "the {day}",
-                                "{day}",
-                                "{month} {day}",
-                                "{month} {day} {year}"
-                            ]
-                        },
-                        {
-                            "name": "month",
-                            "type": "MonthType",
-                            "samples": [
-                                "{month}",
-                                "in {month}",
-                                "{month} {day}",
-                                "{month} {day} {year}"
-                            ]
-                        },
-                        {
-                            "name": "year",
-                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
-                            "samples": [
-                                "of {year}",
-                                "I was born in {year}",
-                                "I was born in the year {year}",
-                                "year {year}",
-                                "in {year}",
-                                "in the year {year}",
-                                "the year {year}",
-                                "{year}",
-                                "{month} {day} {year}",
-                                "{month} {year}"
-                            ]
-                        }
-                    ],
-                    "samples": [
-                        "{day}",
-                        "{month}",
-                        "{month} {year}",
-                        "{month} of {year}",
-                        "{day} of {month}",
-                        "in the year {year}",
-                        "I was born in {year}",
-                        "born in {year}",
-                        "for the {day} of {month}",
-                        "for {month} {day}",
-                        "with the {day} of {month}",
-                        "for the {day} of {month} {year}",
-                        "for {month} {day} {year}",
-                        "{month} {day} {year}",
-                        "my date of birth is the {day} of {month} {year}",
-                        "my birthday is the {day} of {month} {year}",
-                        "my birthday is the {day} of {month}",
-                        "I was born the {day} of {month} {year}",
-                        "{day} of {month} {year}",
-                        "{month} {day}",
-                        "{month} the {day}",
-                        "I was born the {day} of {month}",
-                        "the {day}",
-                        "in {month}",
-                        "register my birthday",
-                        "record my birthday",
-                        "remember my birthday",
-                        "register my date of birth",
-                        "take a note on my birthday",
-                        "make a note on my birthday"
-                    ]
-                },
-                {
-                    "name": "AMAZON.NavigateHomeIntent",
-                    "samples": []
-                },
-                {
-                    "name": "SayBirthdayIntent",
-                    "slots": [],
-                    "samples": [
-                        "my next birthday",
-                        "next birthday",
-                        "when is my birthday",
-                        "when is my next birthday",
-                        "my birthday",
-                        "remaining days until my birthday",
-                        "days until my birthday",
-                        "days left",
-                        "how many days until my birthday",
-                        "how many days left",
-                        "tell me my birthday",
-                        "birthday",
-                        "give me my birthday",
-                        "birthday info",
-                        "tell me the remaining days until my birthday",
-                        "how many days"
-                    ]
-                },
-                {
-                    "name": "RemindBirthdayIntent",
-                    "slots": [
-                        {
-                            "name": "message",
-                            "type": "AMAZON.SearchQuery",
-                            "samples": [
-                                "{message}"
-                            ]
-                        }
-                    ],
-                    "samples": [
-                        "reminder",
-                        "birthday reminder",
-                        "remind me my birthday",
-                        "configure a reminder",
-                        "set a reminder",
-                        "create a reminder",
-                        "put a reminder",
-                        "reminder for my birthday",
-                        "configure a reminder for my birthday",
-                        "put a reminder for my birthday",
-                        "create a reminder for my birthday",
-                        "reminder with the message {message}",
-                        "configure a reminder with the message {message}",
-                        "put a reminder with the message {message}",
-                        "create a reminder with the message {message}",
-                        "reminder with the text {message}",
-                        "configure a reminder with the text {message}",
-                        "put a reminder with the text {message}",
-                        "create a reminder with the text {message}"
-                    ]
-                },
-                {
-                    "name": "AMAZON.FallbackIntent",
-                    "samples": []
-                }
-            ],
-            "types": [
-                {
-                    "name": "MonthType",
-                    "values": [
-                        {
-                            "id": "12",
-                            "name": {
-                                "value": "december"
-                            }
-                        },
-                        {
-                            "id": "11",
-                            "name": {
-                                "value": "november"
-                            }
-                        },
-                        {
-                            "id": "10",
-                            "name": {
-                                "value": "october"
-                            }
-                        },
-                        {
-                            "id": "09",
-                            "name": {
-                                "value": "september"
-                            }
-                        },
-                        {
-                            "id": "08",
-                            "name": {
-                                "value": "august"
-                            }
-                        },
-                        {
-                            "id": "07",
-                            "name": {
-                                "value": "july"
-                            }
-                        },
-                        {
-                            "id": "06",
-                            "name": {
-                                "value": "june"
-                            }
-                        },
-                        {
-                            "id": "05",
-                            "name": {
-                                "value": "may"
-                            }
-                        },
-                        {
-                            "id": "04",
-                            "name": {
-                                "value": "april"
-                            }
-                        },
-                        {
-                            "id": "03",
-                            "name": {
-                                "value": "march"
-                            }
-                        },
-                        {
-                            "id": "02",
-                            "name": {
-                                "value": "february"
-                            }
-                        },
-                        {
-                            "id": "01",
-                            "name": {
-                                "value": "january",
-                                "synonyms": [
-                                    "first month of the year"
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "hello neo",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
         },
-        "dialog": {
-            "intents": [
-                {
-                    "name": "RegisterBirthdayIntent",
-                    "confirmationRequired": true,
-                    "prompts": {
-                        "confirmation": "Confirm.Intent.746177723927"
-                    },
-                    "slots": [
-                        {
-                            "name": "day",
-                            "type": "AMAZON.Ordinal",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.653974572406.1040382425372"
-                            },
-                            "validations": [
-                                {
-                                    "type": "isInSet",
-                                    "prompt": "Slot.Validation.190694681136.1424851421300.1030431910159",
-                                    "values": [
-                                        "22",
-                                        "23",
-                                        "24",
-                                        "25",
-                                        "26",
-                                        "27",
-                                        "28",
-                                        "29",
-                                        "30",
-                                        "31",
-                                        "10",
-                                        "11",
-                                        "12",
-                                        "13",
-                                        "14",
-                                        "15",
-                                        "16",
-                                        "17",
-                                        "18",
-                                        "19",
-                                        "1",
-                                        "2",
-                                        "3",
-                                        "4",
-                                        "5",
-                                        "6",
-                                        "7",
-                                        "8",
-                                        "9",
-                                        "20",
-                                        "21"
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "name": "month",
-                            "type": "MonthType",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.282358190483.487594834711"
-                            },
-                            "validations": [
-                                {
-                                    "type": "hasEntityResolutionMatch",
-                                    "prompt": "Slot.Validation.190694681136.463018349705.1461889218555"
-                                }
-                            ]
-                        },
-                        {
-                            "name": "year",
-                            "type": "AMAZON.FOUR_DIGIT_NUMBER",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.1253554922892.1358447173887"
-                            },
-                            "validations": [
-                                {
-                                    "type": "isGreaterThan",
-                                    "prompt": "Slot.Validation.1253554922892.1358447173887.1026742417738",
-                                    "value": "1900"
-                                },
-                                {
-                                    "type": "isLessThan",
-                                    "prompt": "Slot.Validation.1253554922892.1358447173887.176185058059",
-                                    "value": "2018"
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    "name": "RemindBirthdayIntent",
-                    "confirmationRequired": true,
-                    "prompts": {
-                        "confirmation": "Confirm.Intent.556115415325"
-                    },
-                    "slots": [
-                        {
-                            "name": "message",
-                            "type": "AMAZON.SearchQuery",
-                            "confirmationRequired": false,
-                            "elicitationRequired": true,
-                            "prompts": {
-                                "elicitation": "Elicit.Slot.556115415325.557149889298"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "delegationStrategy": "ALWAYS"
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
         },
-        "prompts": [
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "GetNeoResearchIntent",
+          "slots": [
             {
-                "id": "Elicit.Slot.653974572406.1040382425372",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "ok. I heard you birthday is in {month}, but which day exactly?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "when is your birthday?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "ok in {year} , but which day?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "which day is your birthday?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.282358190483.487594834711",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "please now tell me in which month is your birthday"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "ok but in which month exactly?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "in which month is your birthday?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "ok, the day is {day}. but in which month?"
-                    }
-                ]
-            },
-            {
-                "id": "Slot.Validation.190694681136.1424851421300.1030431910159",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Please say a valid day"
-                    }
-                ]
-            },
-            {
-                "id": "Slot.Validation.190694681136.463018349705.1461889218555",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "Please try again and say a valid month"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.1253554922892.1358447173887",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "you're from {month} of which year?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "ok. {month} {day}. but in which year?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "please now tell me in which year you were born"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "which year were you born?"
-                    }
-                ]
-            },
-            {
-                "id": "Slot.Validation.1253554922892.1358447173887.1026742417738",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "That's too old to be true. Please try again"
-                    }
-                ]
-            },
-            {
-                "id": "Slot.Validation.1253554922892.1358447173887.176185058059",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "That's too young to be true. Plese try again"
-                    }
-                ]
-            },
-            {
-                "id": "Confirm.Intent.746177723927",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "That's {month} {day} {year} , did I get that right?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "Are you sure you want to register {month} {day} {year} ?"
-                    }
-                ]
-            },
-            {
-                "id": "Elicit.Slot.556115415325.557149889298",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "What's the message for the reminder?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "Great. Now please tell me what message you want in the reminder"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "Ok. Now please say the message for the reminder"
-                    }
-                ]
-            },
-            {
-                "id": "Confirm.Intent.556115415325",
-                "variations": [
-                    {
-                        "type": "PlainText",
-                        "value": "The message. {message} .will be sent as a reminder on your birthday. Is it correct?"
-                    },
-                    {
-                        "type": "PlainText",
-                        "value": "On your birthday I will send you a reminder with this message. {message} . Ok?"
-                    }
-                ]
+              "name": "topic",
+              "type": "AMAZON.SocialMediaPlatform",
+              "samples": [
+                "{topic}",
+                "topic is {topic}",
+                "research topic is {topic}",
+                "it\u0027s {topic}"
+              ]
             }
+          ],
+          "samples": [
+            "my latest insights on {topic}",
+            "my latest insights"
+          ]
+        },
+        {
+          "name": "AddResearchIntent",
+          "slots": [
+            {
+              "name": "topic",
+              "type": "AMAZON.SocialMediaPlatform"
+            },
+            {
+              "name": "topicDetails",
+              "type": "topicQuery"
+            }
+          ],
+          "samples": [
+            "add {topic} and {topicDetails}",
+            "{topic} and {topicDetails}"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": [
+            "yes",
+            "sounds good"
+          ]
+        },
+        {
+          "name": "ReminderIntent",
+          "slots": [
+            {
+              "name": "amOrPm",
+              "type": "MorningAfternoon",
+              "samples": [
+                "That is {amOrPm}",
+                "{amOrPm}"
+              ],
+              "multipleValues": {
+                "enabled": true
+              }
+            },
+            {
+              "name": "company",
+              "type": "AMAZON.Corporation",
+              "samples": [
+                "{company}  {company} and {company}",
+                "{company} and {company}",
+                "{company}"
+              ],
+              "multipleValues": {
+                "enabled": true
+              }
+            },
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "{time} {amOrPm} please",
+                "{time} {amOrPm}",
+                "{time}"
+              ]
+            }
+          ],
+          "samples": [
+            "{company} {company} and {company}",
+            "{company} and {company}",
+            "{company}",
+            "Let\u0027s set a reminder",
+            "Please set a reminder about {company}",
+            "I would like a reminder about {company} at {time} {amOrPm}",
+            "I would like news about {company}",
+            "{time} {amOrPm}",
+            "I would like a reminder at {time}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "WhatsApp, is an American freeware, cross-platform centralized instant messaging and voice-over-IP (VoIP) service owned by Facebook, Inc."
+              }
+            },
+            {
+              "name": {
+                "value": "YouTube is an American online video sharing and social media platform owned by Google. It was launched in February 2005"
+              }
+            },
+            {
+              "name": {
+                "value": "UBS Group AG is a Swiss multinational investment bank and financial services company founded and based in Switzerland."
+              }
+            },
+            {
+              "name": {
+                "value": "IBM is an American multinational technology corporation headquartered in Armonk, New York, with operations in over 171 countries."
+              }
+            },
+            {
+              "name": {
+                "value": "Tesla is an American electric vehicle and clean energy company based in Palo Alto, California, United States."
+              }
+            },
+            {
+              "name": {
+                "value": "Amazon is an American multinational technology company which focuses on e-commerce, cloud computing, digital streaming, and AI."
+              }
+            }
+          ],
+          "name": "topicQuery"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "ubs"
+              }
+            },
+            {
+              "name": {
+                "value": "ibm"
+              }
+            },
+            {
+              "name": {
+                "value": "tesla"
+              }
+            },
+            {
+              "name": {
+                "value": "amazon"
+              }
+            }
+          ],
+          "name": "topics"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "PM"
+              }
+            },
+            {
+              "name": {
+                "value": "AM"
+              }
+            }
+          ],
+          "name": "MorningAfternoon"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "GetNeoResearchIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "topic",
+              "type": "AMAZON.SocialMediaPlatform",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1598135485846.630939405371"
+              }
+            }
+          ],
+          "delegationStrategy": "SKILL_RESPONSE"
+        },
+        {
+          "name": "AddResearchIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.838980995993"
+          },
+          "slots": [
+            {
+              "name": "topic",
+              "type": "AMAZON.SocialMediaPlatform",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            },
+            {
+              "name": "topicDetails",
+              "type": "topicQuery",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            }
+          ]
+        },
+        {
+          "name": "ReminderIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "amOrPm",
+              "type": "MorningAfternoon",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.205209736807"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.159197729300.205209736807.1031771570687",
+                  "values": [
+                    "AM",
+                    "PM"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "company",
+              "type": "AMAZON.Corporation",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.491439887212"
+              }
+            },
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.1389772774154"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.159197729300.205209736807",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "When would you like the reminder for - AM or PM?"
+          }
         ]
-    }
+      },
+      {
+        "id": "Slot.Validation.159197729300.205209736807.1031771570687",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "That is not an acceptable value, please say either AM or PM"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.159197729300.491439887212",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I am sorry, but I need to know the name of the company you would like reminders about"
+          },
+          {
+            "type": "PlainText",
+            "value": "What company would you like reminders about?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.159197729300.1389772774154",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What time would you like the reminder for?"
+          },
+          {
+            "type": "PlainText",
+            "value": "At what time would you like the reminder?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.653974572406.1040382425372",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "ok. I heard you birthday is in {month}, but which day exactly?"
+          },
+          {
+            "type": "PlainText",
+            "value": "when is your birthday?"
+          },
+          {
+            "type": "PlainText",
+            "value": "ok in {year} , but which day?"
+          },
+          {
+            "type": "PlainText",
+            "value": "which day is your birthday?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.282358190483.487594834711",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "please now tell me in which month is your birthday"
+          },
+          {
+            "type": "PlainText",
+            "value": "ok but in which month exactly?"
+          },
+          {
+            "type": "PlainText",
+            "value": "in which month is your birthday?"
+          },
+          {
+            "type": "PlainText",
+            "value": "ok, the day is {day}. but in which month?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.190694681136.1424851421300.1030431910159",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Please say a valid day"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.190694681136.463018349705.1461889218555",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Please try again and say a valid month"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1253554922892.1358447173887",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "you\u0027re from {month} of which year?"
+          },
+          {
+            "type": "PlainText",
+            "value": "ok. {month} {day}. but in which year?"
+          },
+          {
+            "type": "PlainText",
+            "value": "please now tell me in which year you were born"
+          },
+          {
+            "type": "PlainText",
+            "value": "which year were you born?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1253554922892.1358447173887.1026742417738",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "That\u0027s too old to be true. Please try again"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.1253554922892.1358447173887.176185058059",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "That\u0027s too young to be true. Plese try again"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.746177723927",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "That\u0027s {month} {day} {year} , did I get that right?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Are you sure you want to register {month} {day} {year} ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.556115415325.557149889298",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What\u0027s the message for the reminder?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Great. Now please tell me what message you want in the reminder"
+          },
+          {
+            "type": "PlainText",
+            "value": "Ok. Now please say the message for the reminder"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.556115415325",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "The message. {message} .will be sent as a reminder on your birthday. Is it correct?"
+          },
+          {
+            "type": "PlainText",
+            "value": "On your birthday I will send you a reminder with this message. {message} . Ok?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1598135485846.630939405371",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what is the topic ?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.838980995993",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "should I save the details ?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.193203594598.831182432064",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "specify both topic and topic details"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "35"
 }
