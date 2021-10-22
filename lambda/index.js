@@ -12,14 +12,17 @@ const LaunchRequestHandler = {
         const {attributesManager, requestEnvelope} = handlerInput;
         const sessionAttributes = attributesManager.getSessionAttributes();
         
-        const name = sessionAttributes['name'] || '';
+        const name = sessionAttributes['name'] || 'Allan';
         
         const audioUrl = util.getS3PreSignedUrl("Media/ubs-intro.mp3").replace(/&/g,'&amp;');
         return handlerInput.responseBuilder
                 .speak(` Hello ${name} <audio src="${audioUrl}"/>`)
+                .reprompt('If you\'re not sure what to do next try asking for help. If you want to leave just say stop. What would you like to do next?')
                 .getResponse();
     }
 };
+
+
 
 const GetResearchIntentHandler = {
     canHandle(handlerInput) {
@@ -31,27 +34,37 @@ const GetResearchIntentHandler = {
         // the attributes manager allows us to access session attributes
         const sessionAttributes = attributesManager.getSessionAttributes();
         const {intent} = requestEnvelope.request;
-        const name = sessionAttributes['name'] || '';
-        const topic = Alexa.getSlotValue(requestEnvelope, 'topic');
+        const name = sessionAttributes['name'] || 'Allan';
+        const topic = Alexa.getSlotValue(requestEnvelope, 'topic') || 'amazon';
+        const audioUrl = util.getS3PreSignedUrl("Media/ubs-intro.mp3").replace(/&/g,'&amp;');
         
         //const speakOutput = 'There is a research paper on Tesla with UBS. Do you want to hear about it ?';
 
         const topicDetails = sessionAttributes[topic];
+        
         let speechText = '';
         
         if(topicDetails) {
-            speechText = handlerInput.t('SUCCESS_MSG', {topicDetails: topicDetails});    
+            speechText = handlerInput.t('SUCCESS_MSG', {name:name, topicDetails: topicDetails});  
+            speechText += 'Would you like to hear more?';
+            
         } else {
-            handlerInput.responseBuilder.addDelegateDirective({
+            
+            sessionAttributes[topic] = 'Amazon Bullish on smart speakers.';
+            const topicDetails = sessionAttributes[topic];
+            
+            speechText = handlerInput.t('SUCCESS_MSG', {name:name, topicDetails: topicDetails});  
+            speechText += 'Would you like to hear more ?';
+            /*handlerInput.responseBuilder.addDelegateDirective({
                 name: 'AddResearchIntent',
                 confirmationStatus: 'NONE',
                 slots: {}
-            });
+            });*/
         }
         
         return handlerInput.responseBuilder
             .speak(speechText)
-            .reprompt('If you\'re not sure what to do next try asking for help. If you want to leave just say stop. What would you like to do next?')
+            .reprompt(`Ofcourse ${name}, have a good day !! <audio src="${audioUrl}"/>`)
             .getResponse();
     }
 };
@@ -190,8 +203,12 @@ const CancelAndStopIntentHandler = {
     },
     handle(handlerInput) {
         const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
-        const name = sessionAttributes['name'] || '';
-        const speechText = handlerInput.t('GOODBYE_MSG', {name: name});
+        const name = sessionAttributes['name'] || ' Allan';
+        let speechText = handlerInput.t('GOODBYE_MSG', {name: name});
+        
+        const audioUrl = util.getS3PreSignedUrl("Media/ubs-intro.mp3").replace(/&/g,'&amp;');
+        
+        speechText += `<audio src="${audioUrl}"/>`;
 
         return handlerInput.responseBuilder
             .speak(speechText)
