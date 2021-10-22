@@ -13,11 +13,12 @@ module.exports = {
             WILL_TURN_MSG_plural: `until you're {{count}} years old. `,
             GREET_MSG: '$t(POSITIVE_SOUND) $t(GREETING_SPEECHCON) {{name}}. ',
             SUCCESS_MSG: '$t(POSITIVE_SOUND) {{topicDetails}}. ',
+            REMINDER_SUCCESS_MSG: 'You have successfully set up a reminder for {{time}} {{amOrPm}} for company {{company}}.',
             NOW_TURN_MSG: `You're now {{count}} year old! `,
             NOW_TURN_MSG_plural: `You're now {{count}} years old! `,
-            MISSING_MSG: `$t(DOUBT_SPEECHCON). It looks like you haven't told me your birthday yet. `,
-            POST_SAY_HELP_MSG: `If you want to change the date, try saying, register my birthday. You can also try to set up a reminder for your birthday. What would you like to do next? `,
-            HELP_MSG: 'I can remember your birthday if you tell me the date. Or I can tell you the remaining days until your next birthday. Also, you can create a reminder so you never forget about your birthday. Which one would you like to try? ',
+            MISSING_MSG: `$t(DOUBT_SPEECHCON). It looks like you haven't told me yet. `,
+            POST_SAY_HELP_MSG: `If you want to change the date, try saying, register. You can also try to set up a reminder for you. What would you like to do next? `,
+            HELP_MSG: 'I can remember if you tell me the date. Or I can tell you the remaining days until your next event. Also, you can create a reminder so you never forget about . Which one would you like to try? ',
             REPROMPT_MSG: `If you're not sure what to do next try asking for help. If you want to leave just say stop. What would you like to do next? `,
             GOODBYE_MSG: ['Goodbye {{name}}! ', 'So long {{name}}! ', 'See you later {{name}}! ', 'Cheers {{name}}! '],
             REFLECTOR_MSG: 'You just triggered {{intent}}',
@@ -29,7 +30,7 @@ module.exports = {
             UNSUPPORTED_DEVICE_MSG: `This device doesn't support this operation. `,
             CANCEL_MSG: `Ok. Let's cancel that. `,
             MISSING_PERMISSION_MSG: `It looks like you haven't granted permissions for reminders. I have just sent you a card to your Alexa app so you can quickly enable this. `,
-            POST_REMINDER_HELP_MSG: `If you want to know when your reminder will trigger, you can say, how many days until my birthday. What would you like to do next?`
+            POST_REMINDER_HELP_MSG: `If you want to know when your reminder will trigger, you can say, how many days until the event. What would you like to do next?`
         }
     }
 }

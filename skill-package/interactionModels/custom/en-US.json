@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "neo news",
+      "invocationName": "hello neo",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -24,7 +24,7 @@
           "samples": []
         },
         {
-          "name": "GetResearchIntent",
+          "name": "GetNeoResearchIntent",
           "slots": [
             {
               "name": "topic",
@@ -38,11 +38,8 @@
             }
           ],
           "samples": [
-            "is there any new research",
-            "is there any new research on {topic} in UBS",
-            "does UBS has new research on {topic}",
-            "is there any new research on {topic}",
-            "tell me about the {topic} research"
+            "my latest insights on {topic}",
+            "my latest insights"
           ]
         },
         {
@@ -60,6 +57,61 @@
           "samples": [
             "add {topic} and {topicDetails}",
             "{topic} and {topicDetails}"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": [
+            "yes",
+            "sounds good"
+          ]
+        },
+        {
+          "name": "ReminderIntent",
+          "slots": [
+            {
+              "name": "amOrPm",
+              "type": "MorningAfternoon",
+              "samples": [
+                "That is {amOrPm}",
+                "{amOrPm}"
+              ],
+              "multipleValues": {
+                "enabled": true
+              }
+            },
+            {
+              "name": "company",
+              "type": "AMAZON.Corporation",
+              "samples": [
+                "{company}  {company} and {company}",
+                "{company} and {company}",
+                "{company}"
+              ],
+              "multipleValues": {
+                "enabled": true
+              }
+            },
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "{time} {amOrPm} please",
+                "{time} {amOrPm}",
+                "{time}"
+              ]
+            }
+          ],
+          "samples": [
+            "{company} {company} and {company}",
+            "{company} and {company}",
+            "{company}",
+            "Let\u0027s set a reminder",
+            "Please set a reminder about {company}",
+            "I would like a reminder about {company} at {time} {amOrPm}",
+            "I would like news about {company}",
+            "{time} {amOrPm}",
+            "I would like a reminder at {time}"
           ]
         }
       ],
@@ -123,13 +175,28 @@
             }
           ],
           "name": "topics"
+        },
+        {
+          "values": [
+            {
+              "name": {
+                "value": "PM"
+              }
+            },
+            {
+              "name": {
+                "value": "AM"
+              }
+            }
+          ],
+          "name": "MorningAfternoon"
         }
       ]
     },
     "dialog": {
       "intents": [
         {
-          "name": "GetResearchIntent",
+          "name": "GetNeoResearchIntent",
           "confirmationRequired": false,
           "prompts": {},
           "slots": [
@@ -142,7 +209,8 @@
                 "elicitation": "Elicit.Slot.1598135485846.630939405371"
               }
             }
-          ]
+          ],
+          "delegationStrategy": "SKILL_RESPONSE"
         },
         {
           "name": "AddResearchIntent",
@@ -166,11 +234,99 @@
               "prompts": {}
             }
           ]
+        },
+        {
+          "name": "ReminderIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "amOrPm",
+              "type": "MorningAfternoon",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.205209736807"
+              },
+              "validations": [
+                {
+                  "type": "isInSet",
+                  "prompt": "Slot.Validation.159197729300.205209736807.1031771570687",
+                  "values": [
+                    "AM",
+                    "PM"
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "company",
+              "type": "AMAZON.Corporation",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.491439887212"
+              }
+            },
+            {
+              "name": "time",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.159197729300.1389772774154"
+              }
+            }
+          ]
         }
       ],
       "delegationStrategy": "ALWAYS"
     },
     "prompts": [
+      {
+        "id": "Elicit.Slot.159197729300.205209736807",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "When would you like the reminder for - AM or PM?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.159197729300.205209736807.1031771570687",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "That is not an acceptable value, please say either AM or PM"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.159197729300.491439887212",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "I am sorry, but I need to know the name of the company you would like reminders about"
+          },
+          {
+            "type": "PlainText",
+            "value": "What company would you like reminders about?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.159197729300.1389772774154",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What time would you like the reminder for?"
+          },
+          {
+            "type": "PlainText",
+            "value": "At what time would you like the reminder?"
+          }
+        ]
+      },
       {
         "id": "Elicit.Slot.653974572406.1040382425372",
         "variations": [
@@ -319,10 +475,6 @@
           {
             "type": "PlainText",
             "value": "what is the topic ?"
-          },
-          {
-            "type": "PlainText",
-            "value": "what\u0027s the research topic ?"
           }
         ]
       },
@@ -346,5 +498,5 @@
       }
     ]
   },
-  "version": "27"
+  "version": "35"
 }
